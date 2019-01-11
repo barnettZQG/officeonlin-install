@@ -27,14 +27,14 @@ ssl_fix_dirty(){
   fi
 }
 
-if [ -n "${set_name:?}" ]; then
-  echo "Searching for a set named $set_name..."
-  my_set=$(FindOnlineSet "$set_name" "$lo_src_repo" "$set_core_regex" "$lool_src_repo" "$set_online_regex" "$set_version")
-  if [ -n "$my_set" ]; then
-    lo_src_branch=$(echo $my_set | awk '{print $1}') && echo "Core branch: $lo_src_branch"
-    lool_src_branch=$(echo $my_set | awk '{print $2}') && echo "Online branch: $lool_src_branch"
-  fi
-fi
+# if [ -n "${set_name:?}" ]; then
+#   echo "Searching for a set named $set_name..."
+#   my_set=$(FindOnlineSet "$set_name" "$lo_src_repo" "$set_core_regex" "$lool_src_repo" "$set_online_regex" "$set_version")
+#   if [ -n "$my_set" ]; then
+#     lo_src_branch=$(echo $my_set | awk '{print $1}') && echo "Core branch: $lo_src_branch"
+#     lool_src_branch=$(echo $my_set | awk '{print $2}') && echo "Online branch: $lool_src_branch"
+#   fi
+# fi
 # run apt update && upgrade if last update is older than 1 day
 find /var/lib/apt/lists/ -mtime -1 |grep -q partial || apt-get update && apt-get upgrade -y
 
@@ -84,12 +84,9 @@ apt-get build-dep libreoffice -y
 
 if [ ! -f /etc/apt/sources.list.d/nodesource.list ]; then
   curl -sL https://deb.nodesource.com/setup_6.x | bash -
-  apt-get install nodejs -y
+  apt-get install nodejs npm -y
 fi
 if ${lo_non_free_ttf}; then
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
 apt-get install ttf-mscorefonts-installer -y
 fi
-
-getent passwd lool || (useradd lool -G sudo; mkdir /home/lool)
-chown lool:lool /home/lool -R
