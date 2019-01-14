@@ -13,7 +13,8 @@ SearchGitOpts=''
 if [ -d ${lool_dir} ]; then
   cd ${lool_dir}
 else
-  git clone ${lool_src_repo} ${lool_dir}
+  [ -n "${lool_src_branch}" ] && git clone -b ${lool_src_branch} ${lool_src_repo} ${lool_dir}
+  [ -n "${lool_src_tag}" ] && git clone -b ${lool_src_tag} ${lool_src_repo} ${lool_dir}
   cd ${lool_dir}
 fi
 declare repChanged

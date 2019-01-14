@@ -1,0 +1,8 @@
+/etc/loolwsd/
+/opt/libreoffice/
+/opt/lool/systemplate/
+/usr/share/fonts/
+/usr/share/loolwsd/discovery.xml
+/usr/share/loolwsd/favicon.ico
+/usr/share/loolwsd/loleaflet/dist/
+/usr/bin/lool*
