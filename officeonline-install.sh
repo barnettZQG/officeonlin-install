@@ -31,8 +31,8 @@ apt-get update -y
 if [ -z "$(for subpath in $(echo $PATH|tr ':' ' '); do ls $subpath/curl 2>/dev/null; done)" ]; then
   apt-get install curl -y
 fi
-apt-get install sudo cpio vim net-tools
-
+apt-get install -y sudo cpio vim net-tools
+adduser --quiet --system --group --home /home/lool lool
 while [[ $# -gt 0 ]]
 do
 key="$1"
