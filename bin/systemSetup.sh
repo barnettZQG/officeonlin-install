@@ -83,9 +83,8 @@ fi
 apt-get build-dep libreoffice -y
 
 if [ ! -f /etc/apt/sources.list.d/nodesource.list ]; then
-  curl -sL https://deb.nodesource.com/setup_6.x | bash -
-  sudo apt-get install nodejs npm -y
-  sudo ln -s /usr/bin/nodejs /usr/bin/node
+  curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  sudo apt-get install -y nodejs
 fi
 if ${lo_non_free_ttf}; then
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
