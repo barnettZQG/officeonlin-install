@@ -8,6 +8,7 @@ ADD fonts/  /usr/share/fonts/custom
 RUN fc-cache -fv && \
     rm -rf /opt/lool/systemplate/var/cache/fontconfig/* && \
     cp /var/cache/fontconfig/* /opt/lool/systemplate/var/cache/fontconfig && \
+    rm -rf /opt/lool/systemplate/usr/share/fonts/* && \
     ln -s /usr/share/fonts/* /opt/lool/systemplate/usr/share/fonts && \
     rm -rf /opt/lool/systemplate/etc/fonts && \
     cp -R /etc/fonts/ /opt/lool/systemplate/etc/fonts 
